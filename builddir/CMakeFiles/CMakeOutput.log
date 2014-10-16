@@ -1,0 +1,87 @@
+The system is: Linux - 2.6.18-348.6.1.el5_lustre - x86_64
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/pnfs/user/unclok/garfield/builddir/CMakeFiles/CompilerIdCXX/a.out"
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F90" succeeded.
+Compiler: /usr/bin/f95 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the Fortran compiler identification source "CMakeFortranCompilerId.F90" produced "a.out"
+
+The Fortran compiler identification is GNU, found in "/pnfs/user/unclok/garfield/builddir/CMakeFiles/CompilerIdFortran/a.out"
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o -c /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp'
+
+
+Determining if the Fortran compiler works passed with the following output:
+Change Dir: /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building Fortran object CMakeFiles/cmTryCompileExec.dir/testFortranCompiler.f.o
+/usr/bin/f95  -o CMakeFiles/cmTryCompileExec.dir/testFortranCompiler.f.o   -c /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp/testFortranCompiler.f
+Linking Fortran executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/f95   -fPIC     CMakeFiles/cmTryCompileExec.dir/testFortranCompiler.f.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp'
+
+
+Determining if the Fortran compiler supports Fortran 90 passed with the following output:
+Change Dir: /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building Fortran object CMakeFiles/cmTryCompileExec.dir/testFortranCompilerF90.f90.o
+/usr/bin/f95  -o CMakeFiles/cmTryCompileExec.dir/testFortranCompilerF90.f90.o   -c /pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp/testFortranCompilerF90.f90
+Linking Fortran executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/f95   -fPIC     CMakeFiles/cmTryCompileExec.dir/testFortranCompilerF90.f90.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/pnfs/user/unclok/garfield/builddir/CMakeFiles/CMakeTmp'
+
+

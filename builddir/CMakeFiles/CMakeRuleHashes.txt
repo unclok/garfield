@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+78f7b5ab8e825b7d92cda964a69d7b94 rootdict/GarfieldDict.cxx

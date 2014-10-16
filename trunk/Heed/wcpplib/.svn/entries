@@ -1,0 +1,61 @@
+10
+
+dir
+350
+svn+ssh://kijin@svn.cern.ch/reps/garfield/trunk/Heed/wcpplib
+svn+ssh://kijin@svn.cern.ch/reps/garfield
+
+
+
+2014-08-18T07:16:03.579599Z
+350
+hschindl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4525493e-7705-40b1-a816-d608a930855b
+
+random
+dir
+
+particle
+dir
+
+matrix
+dir
+
+ioniz
+dir
+
+math
+dir
+
+geometry
+dir
+
+stream
+dir
+
+matter
+dir
+
+clhep_units
+dir
+
+util
+dir
+
+safetl
+dir
+
