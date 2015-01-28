@@ -1,0 +1,181 @@
+FINISH  
+/CLEAR,START
+/PREP7  
+! No polynomial elements
+/PMETH,OFF,1
+
+! Set electric preferences
+KEYW,PR_ELMAG,1
+KEYW,MAGELC,1   
+
+! Select element
+ET,1,SOLID123
+
+! Material properties
+MP,PERX,1,1e10  ! Metal
+MP,RSVX,1,0.0   !
+MP,PERX,2,1.0   ! Gas
+MP,PERX,3,4.0   ! Permittivity of FR4
+
+! Construct the GEM
+pitch =  0.100   ! Distance between holes, in mm
+kapton = 0.050   ! Thickness of the kapton layer, in mm
+metal =  0.005   ! Thickness of the meta layers, in mm
+outdia = 0.070   ! Hole outer diameter, in mm
+middia = 0.030   ! Hole diameter in the centre, in mm
+drift =   1.0    ! Thickness of the drift region
+induct = -1.0    ! Thickness of the induction gap
+rim =    0.080   ! Rim diameter, in mm
+
+! Make the plastic (1), lower metal (2), upper metal (3) and gas (4)
+BLOCK, 0, pitch/2, 0, sqrt(3)*pitch/2, -kapton/2, kapton/2
+BLOCK, 0, pitch/2, 0, sqrt(3)*pitch/2, -kapton/2, -kapton/2-metal
+BLOCK, 0, pitch/2, 0, sqrt(3)*pitch/2, kapton/2, kapton/2+metal
+BLOCK, 0, pitch/2, 0, sqrt(3)*pitch/2, induct, drift
+
+! Make the cut-out pieces: 5-8
+CONE, outdia/2, middia/2, -kapton/2,   0, 0, 360
+CONE, middia/2, outdia/2, 0, kapton/2, 0, 0, 360
+WPOFFS, 0, 0, kapton/2
+CYL4,   0, 0, rim/2, ,,, metal
+WPOFFS, 0, 0, -kapton
+CYL4,   0, 0, rim/2, ,,, -metal
+WPOFFS, 0, 0, kapton/2
+
+VADD, 5, 6, 7, 8   ! Makes volume 9 and frees 5-8
+
+WPOFFS, pitch/2, sqrt(3)*pitch/2, 0
+CONE, outdia/2, middia/2, -kapton/2,   0, 0, 360
+CONE, middia/2, outdia/2, 0, kapton/2, 0, 0, 360
+WPOFFS, 0, 0, kapton/2
+CYL4,   0, 0, rim/2, ,,, metal
+WPOFFS, 0, 0, -kapton
+CYL4,   0, 0, rim/2, ,,, -metal
+WPOFFS, 0, 0, kapton/2
+
+VADD, 5, 6, 7, 8   ! Makes volume 10 and frees 5-8
+
+! Subtract from the kapton (is 1, becomes 1)
+VSBV,  1,  9, , , KEEP   ! 1 -> 5
+VSBV,  5, 10, , , KEEP   ! 5 -> 1
+! Subtract from the lower metal (is 2, becomes 2)
+VSBV,  2,  9, , , KEEP   ! 2 -> 5
+VSBV,  5, 10, , , KEEP   ! 5 -> 2
+! Subtract from the upper metal (is 3, becomes 3)
+VSBV,  3,  9, , , KEEP   ! 3 -> 5
+VSBV,  5, 10, , , KEEP   ! 5 -> 3
+
+! Delete the holes
+VDEL, 9, 10
+
+! Subtract the kapton and metal from the gas (is 4, becomes 5)
+VSBV,  4, 1, , , KEEP   ! 4 -> 5
+VSBV,  5, 2, , , KEEP   ! 5 -> 4
+VSBV,  4, 3, , , KEEP   ! 4 -> 5
+
+! Glue everything together
+VGLUE, ALL
+
+! Which leaves us with 1 = kapton, 4 = lower metal, 5 = gas, 6 = upper metal
+/COLOR, VOLU, GREEN, 4
+/COLOR, VOLU, RED, 5
+/COLOR, VOLU, BLUE, 6
+/COLOR, VOLU, ORANGE, 1
+
+! Assign material attributes
+VSEL, S,,, 1
+VATT, 3, ,1
+VSEL, S,,, 4
+VATT, 1, ,1
+VSEL, S,,, 5
+VATT, 2, ,1
+VSEL, S,,, 6
+VATT, 1, ,1
+
+! Voltage boundaries on the drift and induction plane
+ASEL, S, LOC, Z, drift
+DA, ALL, VOLT, 0
+ASEL, S, LOC, Z, induct
+DA, ALL, VOLT, 1000
+
+! Symmetry boundary conditions on the sides
+VSEL, S,,,5
+ASLV, S
+ASEL, R, LOC, X, 0
+DA, ALL, SYMM
+VSEL, S,,,5
+ASLV, S
+ASEL, R, LOC, X, +pitch/2
+DA, ALL, SYMM
+VSEL, S,,,5
+ASLV, S
+ASEL, R, LOC, Y, 0
+DA, ALL, SYMM
+VSEL, S,,,5
+ASLV, S
+ASEL, R, LOC, Y, +sqrt(3)*pitch/2
+DA, ALL, SYMM
+
+VSEL, S,,,1
+ASLV, S
+ASEL, R, LOC, X, 0
+DA, ALL, SYMM
+VSEL, S,,,1
+ASLV, S
+ASEL, R, LOC, X, +pitch/2
+DA, ALL, SYMM
+VSEL, S,,,1
+ASLV, S
+ASEL, R, LOC, Y, 0
+DA, ALL, SYMM
+VSEL, S,,,1
+ASLV, S
+ASEL, R, LOC, Y, +sqrt(3)*pitch/2
+DA, ALL, SYMM
+
+! Voltage boundary conditions on the metal
+VSEL, S,,, 4
+ASLV, S
+DA, ALL, VOLT, 700
+VSEL, S,,, 6
+ASLV, S
+DA, ALL, VOLT, 300
+
+! Meshing options
+VSEL, S,,, 1, 7
+ASLV, S
+
+MSHKEY,0
+SMRT, 1
+VSEL,S,,,1
+VSEL,A,,,5
+VMESH,ALL
+! VMESH,1,7
+
+! Solve the field
+/SOLU
+SOLVE   
+FINISH  
+
+! Display the solution
+/POST1  
+/EFACET,1   
+PLNSOL, VOLT,, 0
+
+! Write the solution to files
+/OUTPUT, PRNSOL, lis
+PRNSOL
+/OUTPUT
+
+/OUTPUT, NLIST, lis
+NLIST,,,,COORD
+/OUTPUT
+
+/OUTPUT, ELIST, lis
+ELIST
+/OUTPUT
+
+/OUTPUT, MPLIST, lis
+MPLIST
+/OUTPUT
+
